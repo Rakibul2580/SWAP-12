@@ -15,7 +15,9 @@ export const router = createBrowserRouter([
         path: "/Products/:id",
         element: <Products />,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/category/${params.id}`),
+          fetch(
+            `https://shop-server-rakibul2580.vercel.app/category/${params.id}`
+          ),
       },
       { path: "/login", element: <LogIn /> },
       { path: "/signup", element: <SignUp /> },

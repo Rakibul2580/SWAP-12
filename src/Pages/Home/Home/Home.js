@@ -5,7 +5,7 @@ import HomeCard from "../HomeCard/HomeCard";
 const Home = () => {
   const [items, setItems] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/items")
+    fetch("https://shop-server-rakibul2580.vercel.app/items")
       .then((res) => res.json())
       .then((data) => setItems(data))
       .catch((error) => console.log(error));

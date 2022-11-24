@@ -3,8 +3,8 @@ import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Modal = ({ modalData, setModalData }) => {
   const { user } = useContext(AuthContext);
-  const email = user.email;
-  const name = user.displayName;
+  const email = user?.email;
+  const name = user?.displayName;
   const { title, resale_price } = modalData;
 
   const handelModal = (event) => {
@@ -39,7 +39,7 @@ const Modal = ({ modalData, setModalData }) => {
               <div>
                 <label>User Name</label>
                 <input
-                  defaultValue={name}
+                  defaultValue={user?.name}
                   disabled
                   type="text"
                   className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
@@ -48,7 +48,7 @@ const Modal = ({ modalData, setModalData }) => {
               <div>
                 <label>User Email</label>
                 <input
-                  defaultValue={email}
+                  defaultValue={user?.email}
                   disabled
                   type="text"
                   className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
