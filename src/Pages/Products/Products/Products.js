@@ -4,6 +4,7 @@ import { SpinnerCircular } from "spinners-react";
 import { FcBusinessman } from "react-icons/fc";
 import { FaMapMarkerAlt, FaLayerGroup } from "react-icons/fa";
 import Modal from "../Modal/Modal";
+import PrivateRoute from "../../../Routes/PrivateRoute/PrivateRoute";
 const Products = () => {
   const Products = useLoaderData();
   const [modalData, setModalData] = useState(null);
@@ -18,12 +19,8 @@ const Products = () => {
           key={product._id}
           className="card card-compact w-full bg-slate-200 shadow-xl"
         >
-          <figure>
-            <img
-              src={product.img}
-              alt="Shoes"
-              className="w-full h-80  rounded-lg"
-            />
+          <figure className="p-2">
+            <img src={product.img} alt="Shoes" className="w-full h-80" />
           </figure>
           <div className="p-5  rounded-md">
             <h2 className="text-left text-2xl font-bold">{product.title}</h2>
@@ -76,7 +73,12 @@ const Products = () => {
           </div>
         </div>
       ))}
-      {modalData && <Modal setModalData={setModalData} modalData={modalData} />}
+      {modalData && (
+        <PrivateRoute>
+          {" "}
+          <Modal setModalData={setModalData} modalData={modalData} />
+        </PrivateRoute>
+      )}
     </div>
   );
 };

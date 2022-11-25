@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+
+  const handlelogOut = () => {
+    logOut().then((result) => {});
+  };
+
   const menuList = (
     <>
       <li className="flex">
@@ -18,18 +25,19 @@ const Header = () => {
       </li>
       <li className="flex">
         <NavLink
-          to="/courses"
+          to="/myProducts"
           className={({ isActive }) =>
             isActive
               ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
               : "flex items-center px-4 -mb-1"
           }
-        ></NavLink>
+        >
+          My Products
+        </NavLink>
       </li>
     </>
   );
 
-  const user = {};
   const endMenu = (
     <>
       {user?.uid ? (
@@ -57,7 +65,7 @@ const Header = () => {
             )}
           </Link>
           <button
-            // onClick={handlelogOut}
+            onClick={handlelogOut}
             className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
           >
             Sign out

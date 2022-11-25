@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const LogIn = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
   const handelSignIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,9 +16,17 @@ const LogIn = () => {
     signIn(email, password)
       .then((result) => {
         console.log(result.user);
+        navigate(from, { replace: true });
       })
       .catch((error) => console.log(error));
   };
+
+  const handelGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      navigate(from, { replace: true });
+    });
+  };
+
   return (
     <div className="w-4/12 mx-auto my-20 text-left">
       <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
@@ -66,7 +78,7 @@ const LogIn = () => {
         </div>
         <div className="flex justify-center space-x-4">
           <button
-            onClick={signInWithGoogle}
+            onClick={handelGoogleSignIn}
             aria-label="Log in with Google"
             className="p-3 rounded-sm"
           >
