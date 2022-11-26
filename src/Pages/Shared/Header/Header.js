@@ -119,6 +119,7 @@ const Header = () => {
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {menuList}
+            {endMenu}
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
@@ -126,8 +127,8 @@ const Header = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuList}</ul>
       </div>
-      <div className="navbar-end">
-        <ul>{endMenu}</ul>
+      <div className="navbar-end hidden lg:flex">
+        <ul className="flex">{endMenu}</ul>
       </div>
     </div>
   );

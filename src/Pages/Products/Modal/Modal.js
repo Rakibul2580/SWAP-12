@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
+import toast, { Toaster } from "react-hot-toast";
 
 const Modal = ({ modalData, setModalData }) => {
   const { user } = useContext(AuthContext);
@@ -28,10 +29,11 @@ const Modal = ({ modalData, setModalData }) => {
       body: JSON.stringify(Products),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        setModalData(null);
+        toast.success("Booked success");
+      })
       .catch((error) => console.log(error));
-
-    setModalData(null);
   };
 
   return (

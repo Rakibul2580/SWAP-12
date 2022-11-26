@@ -33,7 +33,7 @@ const Products = () => {
                     <span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
                   )}
                 </h1>
-                <p className="-mt-1">{product.date.slice(0, 10)}</p>
+                <p className="-mt-1">{product?.date?.slice(0, 10)}</p>
               </div>
             </div>
             <div className="text-left space-y-1 mb-3 ">
