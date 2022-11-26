@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const MyProducts = () => {
@@ -15,7 +16,7 @@ const MyProducts = () => {
   }, [user?.email, render]);
 
   const handelDelete = (id) => {
-    fetch(`http://localhost:5000/MyProducts/${id}`, {
+    fetch(`https://shop-server-rakibul2580.vercel.app/MyProducts/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
@@ -43,7 +44,9 @@ const MyProducts = () => {
               <td>{product.modalData.title}</td>
               <td>{product.date.slice(0, 10)}</td>
               <td>{product.modalData.resale_price}</td>
-              <td>Pay</td>
+              <td>
+                <Link to={`/payment/${product._id}`}>Pay</Link>
+              </td>
               <td>
                 <button
                   onClick={() => handelDelete(product?._id)}
