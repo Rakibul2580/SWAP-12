@@ -16,7 +16,7 @@ export const auth = getAuth(app);
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-  const [items, setItems] = useState([]);
+  const [userStatus, setUserStatus] = useState({});
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
 
@@ -48,10 +48,9 @@ const AuthProvider = ({ children }) => {
   };
 
   //sign In With GitHub
-  const updatePro = (name, photo) => {
+  const updatePro = (name) => {
     return updateProfile(auth.currentUser, {
       displayName: name,
-      photoURL: photo,
     });
   };
 
@@ -66,16 +65,16 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  // loading data
   useEffect(() => {
-    fetch("https://math-server-side-rakibul2580.vercel.app")
+    fetch(`http://localhost:5000/users/${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setItems(data));
-  }, []);
+      .then((data) => setUserStatus(data))
+      .catch((error) => console.log(error));
+  }, [user?.email]);
 
   const authInfo = {
     user,
-    items,
+    userStatus,
     loading,
     signUp,
     signIn,

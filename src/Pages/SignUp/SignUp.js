@@ -4,7 +4,7 @@ import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const SignUp = () => {
   const [seller, setSeller] = useState("");
-  const { signUp, signInWithGoogle } = useContext(AuthContext);
+  const { signUp, signInWithGoogle, updatePro } = useContext(AuthContext);
   const handelSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -12,9 +12,28 @@ const SignUp = () => {
     const email = form.email.value;
     const password = form.password.value;
     const userStatus = seller;
+    const user = {
+      name,
+      email,
+      userStatus,
+      admin: false,
+    };
     signUp(email, password)
       .then((result) => {
-        console.log(result.user);
+        updatePro(name)
+          .then((result) => {
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+              },
+              body: JSON.stringify(user),
+            })
+              .then((res) => res.json())
+              .then((data) => form.reset())
+              .catch((error) => console.log(error));
+          })
+          .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
   };

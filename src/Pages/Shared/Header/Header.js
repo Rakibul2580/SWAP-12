@@ -3,9 +3,9 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, userStatus } = useContext(AuthContext);
 
-  const handlelogOut = () => {
+  const handelSignOut = () => {
     logOut().then((result) => {});
   };
 
@@ -23,18 +23,6 @@ const Header = () => {
           Home
         </NavLink>
       </li>
-      <li className="flex">
-        <NavLink
-          to="/myProducts"
-          className={({ isActive }) =>
-            isActive
-              ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-              : "flex items-center px-4 -mb-1"
-          }
-        >
-          My Products
-        </NavLink>
-      </li>
     </>
   );
 
@@ -42,30 +30,49 @@ const Header = () => {
     <>
       {user?.uid ? (
         <>
-          <Link to="/profile">
-            {user?.photoURL ? (
-              <div
-                className="tooltip tooltip-bottom z-10"
-                data-tip={user?.displayName}
+          <li className="flex">
+            <NavLink
+              to="/myProducts"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                  : "flex items-center px-4 -mb-1"
+              }
+            >
+              My Products
+            </NavLink>
+          </li>
+
+          {userStatus?.userStatus && (
+            <li className="flex">
+              <NavLink
+                to="/AddProduct"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                    : "flex items-center px-4 -mb-1"
+                }
               >
-                <button>
-                  <img
-                    src={user.photoURL}
-                    alt=""
-                    className="rounded-full w-12 h-auto mr-5"
-                  />
-                </button>
-              </div>
-            ) : (
-              <div className="tooltip" data-tip={user?.displayName}>
-                <button>
-                  {/* <FaUserGraduate className="w-10 h-auto mr-5"></FaUserGraduate> */}
-                </button>
-              </div>
-            )}
-          </Link>
+                Add Product
+              </NavLink>
+            </li>
+          )}
+          {userStatus?.admin && (
+            <li className="flex">
+              <NavLink
+                to="/Dashboard"
+                className={({ isActive }) =>
+                  isActive
+                    ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                    : "flex items-center px-4 -mb-1"
+                }
+              >
+                Dashboard
+              </NavLink>
+            </li>
+          )}
           <button
-            onClick={handlelogOut}
+            onClick={handelSignOut}
             className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"
           >
             Sign out
