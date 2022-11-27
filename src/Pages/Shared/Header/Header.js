@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
-  const { user, logOut, userStatus } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const handelSignOut = () => {
     logOut().then((result) => {});
@@ -32,58 +32,16 @@ const Header = () => {
         <>
           <li className="flex">
             <NavLink
-              to="/myOrders"
+              to="/Dashboard"
               className={({ isActive }) =>
                 isActive
                   ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
                   : "flex items-center px-4 -mb-1"
               }
             >
-              My Orders
+              Dashboard
             </NavLink>
           </li>
-          <li className="flex">
-            <NavLink
-              to="/myProducts"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-                  : "flex items-center px-4 -mb-1"
-              }
-            >
-              My Products
-            </NavLink>
-          </li>
-
-          {userStatus?.userStatus ||
-            (userStatus?.admin && (
-              <li className="flex">
-                <NavLink
-                  to="/AddProduct"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-                      : "flex items-center px-4 -mb-1"
-                  }
-                >
-                  Add Product
-                </NavLink>
-              </li>
-            ))}
-          {userStatus?.admin && (
-            <li className="flex">
-              <NavLink
-                to="/Dashboard"
-                className={({ isActive }) =>
-                  isActive
-                    ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-                    : "flex items-center px-4 -mb-1"
-                }
-              >
-                Dashboard
-              </NavLink>
-            </li>
-          )}
           <button
             onClick={handelSignOut}
             className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900"

@@ -6,7 +6,7 @@ const Modal = ({ modalData, setModalData }) => {
   const { user } = useContext(AuthContext);
   const email = user?.email;
   const name = user?.displayName;
-  const { title, resale_price } = modalData;
+  const { title, resale_price, img } = modalData;
 
   const handelModal = (event) => {
     event.preventDefault();
@@ -19,6 +19,7 @@ const Modal = ({ modalData, setModalData }) => {
       email,
       name,
       modalData,
+      img,
     };
 
     fetch("https://shop-server-rakibul2580.vercel.app/MyProducts", {

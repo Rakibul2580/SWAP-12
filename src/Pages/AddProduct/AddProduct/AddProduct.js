@@ -6,9 +6,9 @@ const AddProduct = () => {
 
   const handelSeller = (event) => {
     event.preventDefault();
-    const data = event.target;
+    const form = event.target;
     let category_id = "";
-    const selection = data.category.value;
+    const selection = form.category.value;
     if (selection === "Nikai") {
       category_id = "1";
     } else if (selection === "Samsung") {
@@ -16,14 +16,14 @@ const AddProduct = () => {
     } else if (selection === "Sony") {
       category_id = "3";
     }
-    const email = data.email.value;
-    const seller_name = data.name.value;
-    const title = data.productName.value;
-    const location = data.location.value;
-    const resale_price = data.resale_price.value;
-    const original_price = data.original_price.value;
-    const use_time = data.use_time.value;
-    const img = data.photo.value;
+    const email = form.email.value;
+    const seller_name = form.name.value;
+    const title = form.productName.value;
+    const location = form.location.value;
+    const resale_price = form.resale_price.value;
+    const original_price = form.original_price.value;
+    const use_time = form.use_time.value;
+    const img = form.photo.value;
     const product = {
       category_id,
       email,
@@ -34,6 +34,7 @@ const AddProduct = () => {
       original_price,
       use_time,
       img,
+      add: false,
     };
 
     fetch("https://shop-server-rakibul2580.vercel.app/AllCollection", {
@@ -44,7 +45,7 @@ const AddProduct = () => {
       body: JSON.stringify(product),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => form.reset())
       .catch((error) => console.log(error));
   };
 

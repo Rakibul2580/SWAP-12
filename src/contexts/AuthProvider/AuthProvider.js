@@ -16,7 +16,6 @@ export const auth = getAuth(app);
 
 export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
-  const [userStatus, setUserStatus] = useState({});
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState({});
 
@@ -65,16 +64,8 @@ const AuthProvider = ({ children }) => {
     };
   }, []);
 
-  useEffect(() => {
-    fetch(`https://shop-server-rakibul2580.vercel.app/users/${user?.email}`)
-      .then((res) => res.json())
-      .then((data) => setUserStatus(data))
-      .catch((error) => console.log(error));
-  }, [user?.email]);
-
   const authInfo = {
     user,
-    userStatus,
     loading,
     signUp,
     signIn,
