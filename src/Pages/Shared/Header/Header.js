@@ -32,6 +32,18 @@ const Header = () => {
         <>
           <li className="flex">
             <NavLink
+              to="/myOrders"
+              className={({ isActive }) =>
+                isActive
+                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                  : "flex items-center px-4 -mb-1"
+              }
+            >
+              My Orders
+            </NavLink>
+          </li>
+          <li className="flex">
+            <NavLink
               to="/myProducts"
               className={({ isActive }) =>
                 isActive
@@ -43,20 +55,21 @@ const Header = () => {
             </NavLink>
           </li>
 
-          {userStatus?.userStatus && (
-            <li className="flex">
-              <NavLink
-                to="/AddProduct"
-                className={({ isActive }) =>
-                  isActive
-                    ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-                    : "flex items-center px-4 -mb-1"
-                }
-              >
-                Add Product
-              </NavLink>
-            </li>
-          )}
+          {userStatus?.userStatus ||
+            (userStatus?.admin && (
+              <li className="flex">
+                <NavLink
+                  to="/AddProduct"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                      : "flex items-center px-4 -mb-1"
+                  }
+                >
+                  Add Product
+                </NavLink>
+              </li>
+            ))}
           {userStatus?.admin && (
             <li className="flex">
               <NavLink

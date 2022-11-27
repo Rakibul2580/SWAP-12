@@ -36,7 +36,7 @@ const AddProduct = () => {
       img,
     };
 
-    fetch("http://localhost:5000/AllCollection", {
+    fetch("https://shop-server-rakibul2580.vercel.app/AllCollection", {
       method: "POST",
       headers: {
         "content-type": "application/json",

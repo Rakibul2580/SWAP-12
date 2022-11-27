@@ -66,7 +66,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`)
+    fetch(`https://shop-server-rakibul2580.vercel.app/users/${user?.email}`)
       .then((res) => res.json())
       .then((data) => setUserStatus(data))
       .catch((error) => console.log(error));

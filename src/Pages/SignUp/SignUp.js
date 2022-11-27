@@ -1,10 +1,15 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
 const SignUp = () => {
   const [seller, setSeller] = useState("");
   const { signUp, signInWithGoogle, updatePro } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
+
   const handelSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -22,7 +27,7 @@ const SignUp = () => {
       .then((result) => {
         updatePro(name)
           .then((result) => {
-            fetch("http://localhost:5000/users", {
+            fetch("https://shop-server-rakibul2580.vercel.app/users", {
               method: "POST",
               headers: {
                 "content-type": "application/json",
@@ -30,12 +35,21 @@ const SignUp = () => {
               body: JSON.stringify(user),
             })
               .then((res) => res.json())
-              .then((data) => form.reset())
+              .then((data) => {
+                form.reset();
+                navigate(from, { replace: true });
+              })
               .catch((error) => console.log(error));
           })
           .catch((error) => console.log(error));
       })
       .catch((error) => console.log(error));
+  };
+
+  const handelGoogleSignIn = () => {
+    signInWithGoogle().then((result) => {
+      navigate(from, { replace: true });
+    });
   };
 
   return (
@@ -132,7 +146,7 @@ const SignUp = () => {
         </div>
         <div className="flex justify-center space-x-4">
           <button
-            onClick={signInWithGoogle}
+            onClick={handelGoogleSignIn}
             aria-label="Log in with Google"
             className="p-3 rounded-sm"
           >

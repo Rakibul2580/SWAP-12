@@ -4,6 +4,7 @@ import AddProduct from "../../Pages/AddProduct/AddProduct/AddProduct";
 import Dashboard from "../../Pages/Dashboard/Dashboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LotIn/LogIn";
+import MyAddProducts from "../../Pages/MyAddProducts/MyAddProducts/MyAddProducts";
 import MyProducts from "../../Pages/MyProducts/MyProducts/MyProducts";
 import Payment from "../../Pages/MyProducts/Payment/Payment";
 import Products from "../../Pages/Products/Products/Products";
@@ -36,7 +37,8 @@ export const router = createBrowserRouter([
       { path: "/Dashboard", element: <Dashboard /> },
       { path: "/AddProduct", element: <AddProduct /> },
       { path: "/signup", element: <SignUp /> },
-      { path: "/myProducts", element: <MyProducts /> },
+      { path: "/myOrders", element: <MyProducts /> },
+      { path: "/myProducts", element: <MyAddProducts /> },
     ],
   },
 ]);
