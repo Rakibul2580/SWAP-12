@@ -11,6 +11,7 @@ const SideBer = () => {
       .then((data) => setUserStatus(data))
       .catch((error) => console.log(error));
   }, [user?.email]);
+  console.log(userStatus);
   const menuList = (
     <>
       <li className="flex">
@@ -26,37 +27,63 @@ const SideBer = () => {
         </NavLink>
       </li>
 
-      {userStatus?.userStatus ||
-        (userStatus?.admin && (
-          <li className="flex">
-            <NavLink
-              to="/Dashboard/myProducts"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-                  : "flex items-center px-4 -mb-1"
-              }
-            >
-              My Products
-            </NavLink>
-          </li>
-        ))}
+      {userStatus?.userStatus && (
+        <li className="flex">
+          <NavLink
+            to="/Dashboard/myProducts"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                : "flex items-center px-4 -mb-1"
+            }
+          >
+            My Products
+          </NavLink>
+        </li>
+      )}
 
-      {userStatus?.userStatus ||
-        (userStatus?.admin && (
-          <li className="flex">
-            <NavLink
-              to="/Dashboard/AddProduct"
-              className={({ isActive }) =>
-                isActive
-                  ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
-                  : "flex items-center px-4 -mb-1"
-              }
-            >
-              Add Product
-            </NavLink>
-          </li>
-        ))}
+      {userStatus?.userStatus && (
+        <li className="flex">
+          <NavLink
+            to="/Dashboard/AddProduct"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                : "flex items-center px-4 -mb-1"
+            }
+          >
+            Add Product
+          </NavLink>
+        </li>
+      )}
+      {userStatus?.admin && (
+        <li className="flex">
+          <NavLink
+            to="/Dashboard/AddProduct"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                : "flex items-center px-4 -mb-1"
+            }
+          >
+            All Seller
+          </NavLink>
+        </li>
+      )}
+      {userStatus?.admin && (
+        <li className="flex">
+          <NavLink
+            to="/Dashboard/AddProduct"
+            className={({ isActive }) =>
+              isActive
+                ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+                : "flex items-center px-4 -mb-1"
+            }
+          >
+            All User
+          </NavLink>
+        </li>
+      )}
     </>
   );
   return (

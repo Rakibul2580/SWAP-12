@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import DashboardLayOut from "../../layout/DashboardLayOut";
 import Main from "../../layout/Main";
 import AddProduct from "../../Pages/AddProduct/AddProduct/AddProduct";
+import Blog from "../../Pages/Blog/Blog";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import LogIn from "../../Pages/LotIn/LogIn";
 import MyAddProducts from "../../Pages/MyAddProducts/MyAddProducts/MyAddProducts";
@@ -14,6 +16,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/", element: <Home /> },
       {
@@ -34,6 +37,7 @@ export const router = createBrowserRouter([
       },
 
       { path: "/login", element: <LogIn /> },
+      { path: "/blog", element: <Blog /> },
       { path: "/signup", element: <SignUp /> },
     ],
   },

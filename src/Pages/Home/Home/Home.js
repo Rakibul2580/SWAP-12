@@ -1,15 +1,42 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import Advertisement from "../Advertisement/Advertisement";
 import HomeBanner from "../HomeBanner/HomeBanner";
+import { ClipLoader } from "react-spinners";
 import HomeCard from "../HomeCard/HomeCard";
 
+const override = {
+  display: "block",
+  margin: "0 auto",
+  borderColor: "red",
+};
 const Home = () => {
-  const [items, setItems] = useState([]);
-  useEffect(() => {
-    fetch("https://shop-server-rakibul2580.vercel.app/items")
-      .then((res) => res.json())
-      .then((data) => setItems(data))
-      .catch((error) => console.log(error));
-  }, []);
+  const {
+    data: items = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["products"],
+    queryFn: () =>
+      fetch(`https://shop-server-rakibul2580.vercel.app/items`)
+        .then((res) => res.json())
+        .catch((error) => console.log(error)),
+  });
+  let [loader, setLoading] = useState(true);
+  let [color, setColor] = useState("#ffffff");
+  if (isLoading) {
+    return (
+      <ClipLoader
+        color={color}
+        loading={loader}
+        cssOverride={override}
+        size={150}
+        aria-label="Loading Spinner"
+        data-testid="loader"
+      />
+    );
+  }
+
   return (
     <div>
       <HomeBanner />
@@ -18,6 +45,7 @@ const Home = () => {
           <HomeCard key={item._id} item={item}></HomeCard>
         ))}
       </div>
+      <Advertisement />
     </div>
   );
 };

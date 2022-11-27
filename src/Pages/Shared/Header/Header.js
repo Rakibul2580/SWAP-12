@@ -23,6 +23,18 @@ const Header = () => {
           Home
         </NavLink>
       </li>
+      <li className="flex">
+        <NavLink
+          to="/blog"
+          className={({ isActive }) =>
+            isActive
+              ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
+              : "flex items-center px-4 -mb-1"
+          }
+        >
+          Blog
+        </NavLink>
+      </li>
     </>
   );
 

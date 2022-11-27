@@ -81,7 +81,7 @@ const MyAddProducts = () => {
                   onClick={() => handelAdd(product._id)}
                   className="btn btn-outline w-20"
                 >
-                  update
+                  advertised
                 </button>
               </div>
             </div>
