@@ -10,6 +10,7 @@ const override = {
 };
 const MyAddProducts = () => {
   const { user } = useContext(AuthContext);
+  const [render, setRender] = useState("");
 
   const {
     data: products = [user?.email],
@@ -43,6 +44,7 @@ const MyAddProducts = () => {
     refetch();
   }
   const handelAdd = (id) => {
+    setRender(id);
     const status = { add: true };
     fetch(`https://shop-server-rakibul2580.vercel.app/AllCollection/${id}`, {
       method: "PUT",
@@ -52,7 +54,7 @@ const MyAddProducts = () => {
       body: JSON.stringify(status),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => setRender(""))
       .catch((error) => console.log(error));
   };
 
@@ -77,12 +79,21 @@ const MyAddProducts = () => {
                   </h6>
                   <p className="mb-2 text-sm text-gray-900">{}</p>
                 </div>
-                <button
-                  onClick={() => handelAdd(product._id)}
-                  className="btn btn-outline w-20"
-                >
-                  advertised
-                </button>
+                {render === product._id ? (
+                  <button
+                    onClick={() => handelAdd(product._id)}
+                    className="btn btn-outline w-20"
+                  >
+                    <div className="w-3 h-3 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handelAdd(product._id)}
+                    className="btn btn-primary w-28"
+                  >
+                    advertised
+                  </button>
+                )}
               </div>
             </div>
           </div>

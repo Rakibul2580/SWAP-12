@@ -7,8 +7,12 @@ const DashboardLayOut = () => {
   return (
     <div>
       <Header />
-      <SideBer />
-      <Outlet />
+      <div className="flex">
+        <SideBer />
+        <div className="w-full">
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };

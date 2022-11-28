@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const SideBer = () => {
@@ -11,11 +11,10 @@ const SideBer = () => {
       .then((data) => setUserStatus(data))
       .catch((error) => console.log(error));
   }, [user?.email]);
-  console.log(userStatus);
   const menuList = (
     <>
       <li className="flex">
-        <NavLink
+        <Link
           to="/Dashboard/myOrders"
           className={({ isActive }) =>
             isActive
@@ -24,12 +23,12 @@ const SideBer = () => {
           }
         >
           My Orders
-        </NavLink>
+        </Link>
       </li>
 
       {userStatus?.userStatus && (
         <li className="flex">
-          <NavLink
+          <Link
             to="/Dashboard/myProducts"
             className={({ isActive }) =>
               isActive
@@ -38,13 +37,13 @@ const SideBer = () => {
             }
           >
             My Products
-          </NavLink>
+          </Link>
         </li>
       )}
 
       {userStatus?.userStatus && (
         <li className="flex">
-          <NavLink
+          <Link
             to="/Dashboard/AddProduct"
             className={({ isActive }) =>
               isActive
@@ -53,13 +52,13 @@ const SideBer = () => {
             }
           >
             Add Product
-          </NavLink>
+          </Link>
         </li>
       )}
       {userStatus?.admin && (
         <li className="flex">
-          <NavLink
-            to="/Dashboard/AddProduct"
+          <Link
+            to="/Dashboard/seller"
             className={({ isActive }) =>
               isActive
                 ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
@@ -67,13 +66,13 @@ const SideBer = () => {
             }
           >
             All Seller
-          </NavLink>
+          </Link>
         </li>
       )}
       {userStatus?.admin && (
         <li className="flex">
-          <NavLink
-            to="/Dashboard/AddProduct"
+          <Link
+            to="/Dashboard/user"
             className={({ isActive }) =>
               isActive
                 ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"
@@ -81,14 +80,14 @@ const SideBer = () => {
             }
           >
             All User
-          </NavLink>
+          </Link>
         </li>
       )}
     </>
   );
   return (
     <div>
-      <aside className="w-full p-6 sm:w-60 dark:bg-gray-900 dark:text-gray-100">
+      <aside className="w-full p-6 sm:w-60 dark:bg-gray-100 h-screen dark:text-gray-900">
         <nav className="space-y-8 text-sm">
           <div className="space-y-2">
             <h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-400">
@@ -97,7 +96,7 @@ const SideBer = () => {
             <div className="flex flex-col space-y-1">
               <ul
                 tabIndex={0}
-                className="menu menu-compact dropdown-content mt-3 p-2 shadow rounded-box w-52"
+                className="menu menu-compact dropdown-content mt-3 p-2 "
               >
                 {menuList}
               </ul>

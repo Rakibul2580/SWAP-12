@@ -10,7 +10,9 @@ import MyAddProducts from "../../Pages/MyAddProducts/MyAddProducts/MyAddProducts
 import MyProducts from "../../Pages/MyProducts/MyProducts/MyProducts";
 import Payment from "../../Pages/MyProducts/Payment/Payment";
 import Products from "../../Pages/Products/Products/Products";
+import Seller from "../../Pages/Seller/Seller/Seller";
 import SignUp from "../../Pages/SignUp/SignUp";
+import User from "../../Pages/User/User/User";
 
 export const router = createBrowserRouter([
   {
@@ -48,6 +50,8 @@ export const router = createBrowserRouter([
       { path: "/Dashboard/myOrders", element: <MyProducts /> },
       { path: "/Dashboard/myProducts", element: <MyAddProducts /> },
       { path: "/Dashboard/AddProduct", element: <AddProduct /> },
+      { path: "/Dashboard/seller", element: <Seller /> },
+      { path: "/Dashboard/user", element: <User /> },
     ],
   },
 ]);

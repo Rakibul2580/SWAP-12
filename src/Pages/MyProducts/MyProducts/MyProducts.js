@@ -11,6 +11,7 @@ const override = {
 };
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
+  const [render, setRender] = useState("");
 
   const {
     data: products = [user?.email],
@@ -47,11 +48,15 @@ const MyProducts = () => {
   }
 
   const handelDelete = (id) => {
+    setRender(id);
     fetch(`https://shop-server-rakibul2580.vercel.app/MyProducts/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
-      .then((data) => refetch())
+      .then((data) => {
+        refetch();
+        setRender("");
+      })
       .catch((error) => console.log(error));
   };
   return (
@@ -83,18 +88,29 @@ const MyProducts = () => {
                 </div>
               </td>
               <td>{product?.modalData?.title}</td>
-              <td>{product?.date.slice(0, 10)}</td>
+              <td>{product?.date?.slice(0, 10)}</td>
               <td>{product?.modalData?.resale_price}</td>
               <td>
-                <Link to={`/payment/${product._id}`}>Pay</Link>
+                <button className="btn btn-sm">
+                  <Link to={`/payment/${product._id}`}>Pay</Link>
+                </button>
               </td>
               <td>
-                <button
-                  onClick={() => handelDelete(product?._id)}
-                  className="btn btn-primary btn-sm"
-                >
-                  X
-                </button>
+                {render === product._id ? (
+                  <button
+                    onClick={() => handelDelete(product?._id)}
+                    className="btn btn-primary btn-sm"
+                  >
+                    <div className="w-3 h-3 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handelDelete(product?._id)}
+                    className="btn btn-primary btn-sm"
+                  >
+                    X
+                  </button>
+                )}
               </td>
             </tr>
           ))}
