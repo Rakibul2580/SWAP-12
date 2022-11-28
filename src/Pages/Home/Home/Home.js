@@ -4,6 +4,7 @@ import HomeBanner from "../HomeBanner/HomeBanner";
 import { ClipLoader } from "react-spinners";
 import HomeCard from "../HomeCard/HomeCard";
 import Advertisement from "../Advertisement/Advertisement/Advertisement";
+import Extra from "../Extra/Extra";
 
 const override = {
   display: "block",
@@ -48,6 +49,9 @@ const Home = () => {
         </div>
       </div>
       <Advertisement />
+      <div className="my-20">
+        <Extra />
+      </div>
     </div>
   );
 };
