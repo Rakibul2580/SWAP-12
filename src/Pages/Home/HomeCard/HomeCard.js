@@ -21,7 +21,7 @@ const HomeCard = ({ item }) => {
               href="/"
               className="btn btn-primary w-full"
             >
-              Start Practice
+              get start
             </Link>
           </div>
         </div>

@@ -54,7 +54,6 @@ const User = () => {
       <table className="table w-full">
         <thead>
           <tr>
-            <th></th>
             <th>Name</th>
             <th>email</th>
             <th>Delete</th>
@@ -65,8 +64,6 @@ const User = () => {
             (user, index) =>
               !user.userStatus && (
                 <tr key={user?._id}>
-                  <th>{index + 1}</th>
-
                   <td>{user?.name}</td>
                   <td>{user?.email}</td>
                   <td>

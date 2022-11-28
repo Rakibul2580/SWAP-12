@@ -64,13 +64,11 @@ const Seller = () => {
       .catch((error) => console.log(error));
   };
 
-  console.log(sellers);
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">
         <thead>
           <tr>
-            <th></th>
             <th>Name</th>
             <th>email</th>
             <th>Status</th>
@@ -82,8 +80,6 @@ const Seller = () => {
             (seller, index) =>
               seller.userStatus && (
                 <tr key={seller?._id}>
-                  <th>{index + 1}</th>
-
                   <td>{seller?.name}</td>
                   <td>{seller?.email}</td>
                   <td>

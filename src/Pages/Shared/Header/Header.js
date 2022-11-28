@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handelSignOut = () => {
-    logOut().then((result) => {});
+    logOut().then((result) => {
+      navigate("/");
+    });
   };
 
   const menuList = (
@@ -105,7 +108,7 @@ const Header = () => {
             {endMenu}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <a className="btn btn-ghost normal-case text-xl">SWAP</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuList}</ul>
