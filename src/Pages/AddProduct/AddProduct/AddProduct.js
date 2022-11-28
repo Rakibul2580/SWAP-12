@@ -35,6 +35,7 @@ const AddProduct = () => {
       use_time,
       img,
       add: false,
+      seller_verified: false,
     };
 
     fetch("https://shop-server-rakibul2580.vercel.app/AllCollection", {

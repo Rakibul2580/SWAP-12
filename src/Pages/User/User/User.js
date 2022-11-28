@@ -61,31 +61,34 @@ const User = () => {
           </tr>
         </thead>
         <tbody>
-          {users?.map((user, index) => (
-            <tr key={user?._id}>
-              <th>{index + 1}</th>
+          {users?.map(
+            (user, index) =>
+              !user.userStatus && (
+                <tr key={user?._id}>
+                  <th>{index + 1}</th>
 
-              <td>{user?.name}</td>
-              <td>{user?.email}</td>
-              <td>
-                {render === user._id ? (
-                  <button
-                    onClick={() => handelDelete(user?._id)}
-                    className="btn btn-primary btn-sm"
-                  >
-                    <div className="w-3 h-3 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => handelDelete(user?._id)}
-                    className="btn btn-primary btn-sm"
-                  >
-                    X
-                  </button>
-                )}
-              </td>
-            </tr>
-          ))}
+                  <td>{user?.name}</td>
+                  <td>{user?.email}</td>
+                  <td>
+                    {render === user._id ? (
+                      <button
+                        onClick={() => handelDelete(user?._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        <div className="w-3 h-3 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handelDelete(user?._id)}
+                        className="btn btn-primary btn-sm"
+                      >
+                        X
+                      </button>
+                    )}
+                  </td>
+                </tr>
+              )
+          )}
         </tbody>
       </table>
     </div>
