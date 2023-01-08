@@ -1,14 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+import { Vortex } from "react-loader-spinner";
 import { Link } from "react-router-dom";
-import { ClipLoader } from "react-spinners";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
-const override = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
   const [render, setRender] = useState("");
@@ -27,23 +22,21 @@ const MyProducts = () => {
         .catch((error) => console.log(error)),
   });
 
-  let [loader, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
   if (isLoading) {
-    return (
-      <ClipLoader
-        color={color}
-        loading={loader}
-        cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
+    <div className="flex justify-center items-center">
+      <Vortex
+        visible={true}
+        height="80"
+        width="80"
+        ariaLabel="vortex-loading"
+        wrapperStyle={{}}
+        wrapperClass="vortex-wrapper"
+        colors={["red", "green", "blue", "yellow", "orange", "purple"]}
       />
-    );
+    </div>;
   }
 
   if (products.length <= 0) {
-    console.log("first");
     refetch();
   }
 
@@ -75,11 +68,11 @@ const MyProducts = () => {
         </thead>
         <tbody>
           {products?.map((product, index) => (
-            <tr key={product?._id}>
+            <tr key={index}>
               <th>{index + 1}</th>
               <td>
-                <div className="avatar">
-                  <div className="mask mask-squircle w-12 h-12">
+                <div>
+                  <div className="mask mask-squircle w-16 h-16">
                     <img
                       src={product?.img}
                       alt="Avatar Tailwind CSS Component"
@@ -92,11 +85,11 @@ const MyProducts = () => {
               <td>{product?.modalData?.resale_price}</td>
               <td>
                 <button className="btn btn-sm">
-                  <Link to={`/payment/${product._id}`}>Pay</Link>
+                  <Link to={`/payment/${product?._id}`}>Pay</Link>
                 </button>
               </td>
               <td>
-                {render === product._id ? (
+                {render === product?._id ? (
                   <button
                     onClick={() => handelDelete(product?._id)}
                     className="btn btn-primary btn-sm"

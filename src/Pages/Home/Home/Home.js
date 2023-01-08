@@ -1,16 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { useState } from "react";
+import React from "react";
 import HomeBanner from "../HomeBanner/HomeBanner";
-import { ClipLoader } from "react-spinners";
 import HomeCard from "../HomeCard/HomeCard";
 import Advertisement from "../Advertisement/Advertisement/Advertisement";
 import Extra from "../Extra/Extra";
+import { Vortex } from "react-loader-spinner";
 
-const override = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
 const Home = () => {
   const {
     data: items,
@@ -24,20 +19,22 @@ const Home = () => {
         .catch((error) => console.log(error)),
   });
 
-  let [loader, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
   if (isLoading) {
     return (
-      <ClipLoader
-        color={color}
-        loading={loader}
-        cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+      <div className="flex justify-center items-center">
+        <Vortex
+          visible={true}
+          height="200px"
+          width="200px"
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={["red", "green", "blue", "yellow", "orange", "purple"]}
+        />
+      </div>
     );
   }
+
   return (
     <div>
       <HomeBanner />

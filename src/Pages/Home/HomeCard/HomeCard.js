@@ -10,7 +10,7 @@ const HomeCard = ({ item }) => {
           <img
             src={img}
             alt="Shoes"
-            className="w-full h-96 z-20 bg-slate-400 rounded-lg hover:translate-y-6 transition"
+            className="saturate-200 w-full h-96 z-20 p-2 bg-slate-400 rounded-lg hover:translate-y-6 transition"
           />
         </figure>
         <div className="p-5 justify-between items-center rounded-md bg-slate-200 blog sm:flex">

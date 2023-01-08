@@ -9,11 +9,11 @@ const AddProduct = () => {
     const form = event.target;
     let category_id = "";
     const selection = form.category.value;
-    if (selection === "Nikai") {
+    if (selection === "Kawasaki") {
       category_id = "1";
-    } else if (selection === "Samsung") {
+    } else if (selection === "Yamaha") {
       category_id = "2";
-    } else if (selection === "Sony") {
+    } else if (selection === "Suzuki") {
       category_id = "3";
     }
     const email = form.email.value;
@@ -64,7 +64,7 @@ const AddProduct = () => {
               <div className="w-full text-left max-w-xl xl:px-8 xl:w-5/12">
                 <div className="bg-white  rounded shadow-2xl p-7 sm:p-10">
                   <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
-                    Sign up for updates
+                    Add New Item
                   </h3>
                   <form onSubmit={handelSeller}>
                     <div className="mb-1 sm:mb-2">
@@ -199,9 +199,9 @@ const AddProduct = () => {
                         required
                         className="select select-primary w-full"
                       >
-                        <option defaultValue>Samsung</option>
-                        <option>Sony</option>
-                        <option>Nikai</option>
+                        <option defaultValue>Yamaha</option>
+                        <option>Suzuki</option>
+                        <option>Kawasaki</option>
                       </select>
                     </div>
                     <div className="mt-4 mb-2 sm:mb-4">

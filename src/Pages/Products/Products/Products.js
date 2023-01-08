@@ -20,7 +20,11 @@ const Products = () => {
           className="card card-compact w-full bg-slate-200 shadow-xl"
         >
           <figure className="p-2">
-            <img src={product.img} alt="Shoes" className="w-full h-80" />
+            <img
+              src={product.img}
+              alt="Shoes"
+              className="saturate-200 w-full h-80"
+            />
           </figure>
           <div className="p-5  rounded-md">
             <h2 className="text-left text-2xl font-bold">{product.title}</h2>

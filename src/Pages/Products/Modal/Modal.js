@@ -43,9 +43,12 @@ const Modal = ({ modalData, setModalData }) => {
       <div className="modal">
         <div className="modal-box">
           <div className="w-ful max-w-md p-8 space-y-3 rounded-xl dark:text-gray-900">
-            <div className="flex justify-between">
-              <h1 className="text-2xl font-bold text-center">Login</h1>
-              <label htmlFor="my-modal" className="btn">
+            <div className="flex justify-between items-center mb-5">
+              <h1 className="text-2xl font-bold text-center">Book Item</h1>
+              <label
+                htmlFor="my-modal"
+                className="btn text-gray-900 bg-gray-200 border-none hover:text-gray-100 hover-bg-gray-900"
+              >
                 X
               </label>
             </div>
@@ -59,7 +62,7 @@ const Modal = ({ modalData, setModalData }) => {
                   defaultValue={title}
                   disabled
                   type="text"
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+                  className="w-full px-4 py-3 rounded-md dark:border-gray-900 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-violet-400"
                 />
               </div>
               <div>
@@ -68,7 +71,7 @@ const Modal = ({ modalData, setModalData }) => {
                   defaultValue={name}
                   disabled
                   type="text"
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+                  className="w-full px-4 py-3 rounded-md dark:border-gray-900 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-violet-400"
                 />
               </div>
               <div>
@@ -77,7 +80,7 @@ const Modal = ({ modalData, setModalData }) => {
                   defaultValue={email}
                   disabled
                   type="text"
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+                  className="w-full px-4 py-3 rounded-md dark:border-gray-900 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-violet-400"
                 />
               </div>
               <div>
@@ -86,7 +89,7 @@ const Modal = ({ modalData, setModalData }) => {
                   defaultValue={resale_price}
                   disabled
                   type="text"
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+                  className="w-full px-4 py-3 rounded-md dark:border-gray-900 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-violet-400"
                 />
               </div>
               <div>
@@ -95,7 +98,7 @@ const Modal = ({ modalData, setModalData }) => {
                   placeholder="Phone Number"
                   name="number"
                   required
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+                  className="w-full px-4 py-3 rounded-md dark:border-gray-900 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-violet-400"
                 />
               </div>
               <div>
@@ -104,7 +107,7 @@ const Modal = ({ modalData, setModalData }) => {
                   placeholder="Location"
                   name="location"
                   required
-                  className="w-full px-4 py-3 rounded-md dark:border-gray-100 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400"
+                  className="w-full px-4 py-3 rounded-md dark:border-gray-900 dark:bg-gray-200 dark:text-gray-900 focus:dark:border-violet-400"
                 />
               </div>
               <div className="modal-action">

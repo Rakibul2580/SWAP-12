@@ -53,7 +53,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="w-4/12 mx-auto my-20 text-left">
+    <div className="md:w-4/12 w-full mx-auto my-20 text-left">
       <div className="bg-white rounded shadow-2xl p-7 sm:p-10">
         <h3 className="mb-4 text-xl font-semibold sm:text-center sm:mb-6 sm:text-2xl">
           Sign Up

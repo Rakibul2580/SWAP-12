@@ -1,12 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
-import { ClipLoader } from "react-spinners";
+import { Vortex } from "react-loader-spinner";
 
-const override = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "red",
-};
 const User = () => {
   const [render, setRender] = useState("");
   const {
@@ -21,18 +16,19 @@ const User = () => {
         .catch((error) => console.log(error)),
   });
 
-  let [loader, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
   if (isLoading) {
     return (
-      <ClipLoader
-        color={color}
-        loading={loader}
-        cssOverride={override}
-        size={150}
-        aria-label="Loading Spinner"
-        data-testid="loader"
-      />
+      <div className="flex justify-center items-center">
+        <Vortex
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="vortex-loading"
+          wrapperStyle={{}}
+          wrapperClass="vortex-wrapper"
+          colors={["red", "green", "blue", "yellow", "orange", "purple"]}
+        />
+      </div>
     );
   }
 
@@ -48,7 +44,6 @@ const User = () => {
       })
       .catch((error) => console.log(error));
   };
-  console.log(users);
   return (
     <div className="overflow-x-auto">
       <table className="table w-full">

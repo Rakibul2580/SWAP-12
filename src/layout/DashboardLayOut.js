@@ -7,7 +7,7 @@ const DashboardLayOut = () => {
   return (
     <div>
       <Header />
-      <div className="flex">
+      <div className="sm:flex">
         <SideBer />
         <div className="w-full">
           <Outlet />
