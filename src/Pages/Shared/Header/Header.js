@@ -81,7 +81,7 @@ const Header = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 px-12">
+    <div className="navbar z-50 bg-base-100 px-12">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -108,7 +108,13 @@ const Header = () => {
             {endMenu}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">SWAP</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <img
+            src="https://i.ibb.co/8rD3xZy/569983-14970958-2747084-55cb3432-image-removebg-preview-1.png"
+            alt="#"
+            className="w-36"
+          />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal p-0">{menuList}</ul>

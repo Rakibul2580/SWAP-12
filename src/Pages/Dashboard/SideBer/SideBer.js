@@ -44,7 +44,7 @@ const SideBer = () => {
       {userStatus?.userStatus && (
         <li className="flex">
           <Link
-            to="/Dashboard/AddProduct"
+            to="/Dashboard"
             className={({ isActive }) =>
               isActive
                 ? "flex items-center px-4 -mb-1 border-b-2 dark:border-violet-400"

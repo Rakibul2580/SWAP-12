@@ -46,9 +46,6 @@ const Home = () => {
         </div>
       </div>
       <Advertisement />
-      <div className="my-20">
-        <Extra />
-      </div>
     </div>
   );
 };

@@ -84,9 +84,9 @@ const MyProducts = () => {
               <td>{product?.date?.slice(0, 10)}</td>
               <td>{product?.modalData?.resale_price}</td>
               <td>
-                <button className="btn btn-sm">
-                  <Link to={`/payment/${product?._id}`}>Pay</Link>
-                </button>
+                <Link to={`/payment/${product?._id}`} className="btn btn-sm">
+                  Pay
+                </Link>
               </td>
               <td>
                 {render === product?._id ? (

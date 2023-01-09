@@ -100,43 +100,33 @@ const CheckoutForm = ({ product }) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
-            },
-          }}
-        />
-        <button
-          className="btn btn-sm mt-4 btn-primary"
-          type="submit"
-          disabled={!stripe || !clientSecret || processing}
-        >
-          Pay
-        </button>
-      </form>
-      <p className="text-red-500">{cardError}</p>
-      {success && (
-        <div>
-          <p className="text-green-500">{success}</p>
-          <p>
-            Your transactionId:{" "}
-            <span className="font-bold">{transactionId}</span>
-          </p>
-        </div>
-      )}
-    </>
+    <div className="flex justify-center items-center">
+      <div>
+        <form className="" onSubmit={handleSubmit}>
+          <CardElement className="text-xl w-[450px]"></CardElement>
+          <button
+            className="btn btn-sm mt-4 btn-primary"
+            type="submit"
+            disabled={!stripe || !clientSecret || processing}
+          >
+            Pay
+          </button>
+        </form>
+        <h1 className="text-primary text-6xl z-50 flex justify-center items-center absolute top-0 bottom-0 animate-bounce font-bold text-center">
+          Coaming soon ...
+        </h1>
+        <p className="text-red-500">{cardError}</p>
+        {success && (
+          <div>
+            <p className="text-green-500">{success}</p>
+            <p>
+              Your transactionId:{" "}
+              <span className="font-bold">{transactionId}</span>
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
   );
 };
 
