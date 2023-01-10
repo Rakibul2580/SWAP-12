@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
@@ -9,8 +10,11 @@ const SignUp = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState(null);
 
   const handelSignUp = (event) => {
+    setLoader(false);
     event.preventDefault();
     const form = event.target;
     const name = form.fullName.value;
@@ -37,13 +41,27 @@ const SignUp = () => {
               .then((res) => res.json())
               .then((data) => {
                 form.reset();
+                setLoader(true);
                 navigate(from, { replace: true });
+                toast.success("SingUp successfully");
               })
               .catch((error) => console.log(error));
           })
           .catch((error) => console.log(error));
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setLoader(true);
+        toast.error("SingUp unsuccessful");
+        setError(error.message);
+        if (
+          error.message ===
+          "Firebase: Password should be at least 6 characters (auth/weak-password)."
+        ) {
+          setError("Password should be at least 6 characters");
+        } else if (error.message === "Firebase: Error (auth/invalid-email).") {
+          setError("Email is not valid");
+        }
+      });
   };
 
   const handelGoogleSignIn = () => {
@@ -127,14 +145,25 @@ const SignUp = () => {
                 <p className="ml-2">Seller</p>
               </label>
             </div>
+            <label className="text-md text-red-500">{error}</label>
           </div>
           <div className="mt-4 mb-2 sm:mb-4">
-            <button
-              type="submit"
-              className="w-full h-12 px-6 font-medium text-white rounded shadow-md bg-slate-400"
-            >
-              Submit
-            </button>
+            {loader && (
+              <button
+                type="submit"
+                className="w-full h-12 px-6 font-medium text-white rounded shadow-md bg-slate-500"
+              >
+                SingUp
+              </button>
+            )}
+            {!loader && (
+              <button
+                type="submit"
+                className="w-full flex justify-center items-center h-12 px-6 font-medium text-white rounded shadow-md bg-slate-400"
+              >
+                <div className="w-7 h-7 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+              </button>
+            )}
           </div>
         </form>
         <div className="flex items-center pt-4 space-x-1">

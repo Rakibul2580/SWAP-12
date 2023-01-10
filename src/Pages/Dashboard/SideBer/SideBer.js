@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FcBusinessman } from "react-icons/fc";
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 
 const SideBer = () => {
@@ -85,14 +86,25 @@ const SideBer = () => {
       )}
     </>
   );
+  console.log(user);
   return (
     <div>
       <aside className="w-full p-6 sm:w-60 dark:bg-gray-100 h-screen dark:text-gray-900">
         <nav className="space-y-8 text-sm">
           <div className="space-y-2">
-            <h2 className="text-sm font-semibold tracking-widest uppercase dark:text-gray-400">
-              Getting Started
-            </h2>
+            <div className="flex justify-around items-center">
+              {user?.photoURL && (
+                <img
+                  src={user?.photoURL}
+                  alt="Profile"
+                  className="w-12 h-12 rounded-full"
+                />
+              )}
+              {!user?.photoURL && (
+                <FcBusinessman className="text-5xl"></FcBusinessman>
+              )}
+              <h1 className="text-xl font-semibold">{user?.displayName}</h1>
+            </div>
             <div className="flex flex-col space-y-1">
               <ul
                 tabIndex={0}

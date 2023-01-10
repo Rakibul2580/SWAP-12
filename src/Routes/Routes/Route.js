@@ -46,6 +46,7 @@ export const router = createBrowserRouter([
   {
     path: "/Dashboard",
     element: <DashboardLayOut />,
+    errorElement: <ErrorPage />,
     children: [
       { path: "/Dashboard/myOrders", element: <MyProducts /> },
       { path: "/Dashboard/myProducts", element: <MyAddProducts /> },

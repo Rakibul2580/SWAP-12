@@ -14,13 +14,13 @@ const Products = () => {
   }
   return (
     <div>
-      <div className="sticky top-0">
+      {/* <div className="sticky top-0">
         <img
           src="https://i.ibb.co/tZWGxq8/Blue-Liquid-Art-Design-Gallery-Intro-Video-3.gif"
           alt=""
           className="w-screen"
         />
-      </div>
+      </div> */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-11/12 mx-auto py-20">
         {Products.map((product) => (
           <div

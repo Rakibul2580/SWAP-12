@@ -4,6 +4,7 @@ import { Vortex } from "react-loader-spinner";
 
 const Seller = () => {
   const [render, setRender] = useState("");
+  const [verify, setVerify] = useState("");
   const {
     data: sellers = [],
     isLoading,
@@ -45,18 +46,19 @@ const Seller = () => {
       .catch((error) => console.log(error));
   };
 
-  const handelUpdate = (id) => {
-    setRender(id);
-    const seller_verified = true;
-    fetch(`https://shop-server-rakibul2580.vercel.app/seller/${id}`, {
-      method: "PUT",
+  const handelUpdate = (id, name) => {
+    console.log(name);
+    setVerify(id);
+    fetch(`http://localhost:5000/seller/${name}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(seller_verified),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => {
+        setVerify("");
+      })
       .catch((error) => console.log(error));
   };
 
@@ -79,7 +81,7 @@ const Seller = () => {
                   <td>{seller?.name}</td>
                   <td>{seller?.email}</td>
                   <td>
-                    {render === seller._id ? (
+                    {verify === seller._id ? (
                       <button
                         onClick={() => handelUpdate(seller?._id)}
                         className="btn btn-primary btn-sm"
@@ -88,7 +90,7 @@ const Seller = () => {
                       </button>
                     ) : (
                       <button
-                        onClick={() => handelDelete(seller?.name)}
+                        onClick={() => handelUpdate(seller?._id, seller?.name)}
                         className="btn btn-primary btn-sm"
                       >
                         Verify

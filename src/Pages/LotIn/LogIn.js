@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { toast } from "react-hot-toast";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider/AuthProvider";
 
@@ -7,18 +8,30 @@ const LogIn = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location?.state?.from?.pathname || "/";
+  const [loader, setLoader] = useState(true);
+  const [error, setError] = useState(null);
 
   const handelSignIn = (event) => {
+    setLoader(false);
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
     signIn(email, password)
       .then((result) => {
-        console.log(result.user);
         navigate(from, { replace: true });
+        setLoader(true);
+        toast.success("LogIn successfully");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        setLoader(true);
+        toast.error("Login unsuccessful");
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
+          setError("User not found");
+        } else if (error.message === "Firebase: Error (auth/wrong-password).") {
+          setError("Password incorrect");
+        }
+      });
   };
 
   const handelGoogleSignIn = () => {
@@ -59,14 +72,25 @@ const LogIn = () => {
               id="password"
               name="password"
             />
+            <label className="text-red-500 text-md">{error}</label>
           </div>
           <div className="mt-4 mb-2 sm:mb-4">
-            <button
-              type="submit"
-              className="bg-slate-400 w-full h-12 px-6 font-medium tracking-wide text-white transition rounded shadow-md "
-            >
-              SignIn
-            </button>
+            {loader && (
+              <button
+                type="submit"
+                className="w-full h-12 px-6 font-medium text-white rounded shadow-md bg-slate-500"
+              >
+                SignIn
+              </button>
+            )}
+            {!loader && (
+              <button
+                type="submit"
+                className="w-full flex justify-center items-center h-12 px-6 font-medium text-white rounded shadow-md bg-slate-400"
+              >
+                <div className="w-7 h-7 border-4 border-dashed rounded-full animate-spin dark:border-violet-400"></div>
+              </button>
+            )}
           </div>
         </form>
         <div className="flex items-center pt-4 space-x-1">
