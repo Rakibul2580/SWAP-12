@@ -5,6 +5,7 @@ import { FcBusinessman } from "react-icons/fc";
 import { FaMapMarkerAlt, FaLayerGroup } from "react-icons/fa";
 import Modal from "../Modal/Modal";
 import PrivateRoute from "../../../Routes/PrivateRoute/PrivateRoute";
+import "./Products.css";
 const Products = () => {
   const Products = useLoaderData();
   const [modalData, setModalData] = useState(null);
@@ -13,7 +14,7 @@ const Products = () => {
     return <SpinnerCircular />;
   }
   return (
-    <div>
+    <div className="bg-img">
       {/* <div className="sticky top-0">
         <img
           src="https://i.ibb.co/tZWGxq8/Blue-Liquid-Art-Design-Gallery-Intro-Video-3.gif"
